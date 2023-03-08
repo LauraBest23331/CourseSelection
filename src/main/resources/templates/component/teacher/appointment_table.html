@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight"  th:fragment="appointmenttable">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>添加课程</h2>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>添加课程 <small>在这里添加你的课程</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" action="/CourseSelection/Teacher/addCourse.do">
+
+                        <div class="form-group  row"><label class="col-sm-2 col-form-label">课程名</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control" name="courseName" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group  row"><label class="col-sm-2 col-form-label" >课程代码</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control" name="courseNo" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group  row"><label class="col-sm-2 col-form-label" >课堂人数</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control" name="maxNumber" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row"><label class="col-sm-2 col-form-label">上课时间</label>
+
+                            <div class="col-sm-10"><select class="form-control m-b" name="beginTime">
+                                <option value="周一上午">周一上午</option>
+                                <option value="周一下午">周一下午</option>
+                                <option value="周二上午">周二上午</option>
+                                <option value="周二下午">周二下午</option>
+                                <option value="周三上午">周三上午</option>
+                                <option value="周三下午">周三下午</option>
+                                <option value="周四上午">周四上午</option>
+                                <option value="周四下午">周四下午</option>
+                                <option value="周五上午">周五上午</option>
+                                <option value="周五下午">周五下午</option>
+                                <option value="周六上午">周六上午</option>
+                                <option value="周六下午">周六下午</option>
+                            </select>
+
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary " type="submit">发布课程</button>
+                                <br/>
+                                <p style="color: #ff0000" class="login-meg"
+                                   th:text="${alter_msg}"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight" th:fragment="coursetable">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>课程列表</h2>
+            <p style="color: #ff0000" class="login-meg"
+               th:text="${alter_msg}"></p>
+        </div>
+        <div class="col-lg-2">
+            <a href="#modal-form" data-toggle="modal" class="btn btn-success btn-add">
+                <i class="fa fa-upload"></i>
+                &ensp;&ensp;
+                发布新课程
+            </a>
+            <p style="color: #ff0000"
+               th:text="${#httpServletRequest.getAttribute('msg')}"
+               th:if="${not #strings.isEmpty(#httpServletRequest.getAttribute('msg'))}"></p>
+
+        </div>
+        <div id="modal-form" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">发布课程</h3>
+
+                                <p>在下面填写要发布的课程信息</p>
+                                <div class="alert alert-danger alert-dismissable my-alter-info">
+                                    <button aria-hidden="true" class="close" type="button">×</button>
+                                    <div class="alter-text"></div>
+                                </div>
+                                <form role="form" th:action="@{/Teacher/addCourse.action}" method="post" id="form-add">
+                                    <div class="form-group">
+                                        <label for="ipt-account">课程名</label>
+                                        <input type="text" name="courseName" placeholder="课程名" class="form-control" id="ipt-account" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-password">课程号</label>
+                                        <input type="text" name="courseNo" placeholder="课程号" class="form-control" id="ipt-password" required>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-password">上课人数</label>
+                                        <input type="text" name="maxNumber" placeholder="课程人数" class="form-control" id="ipt-maxNumber" required>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="select-sex">开始时间</label>
+                                        <select name="beginTime" class="form-control" id="select-sex">
+                                            <option value="周一上午">周一上午</option>
+                                            <option value="周一下午">周一下午</option>
+                                            <option value="周二上午">周二上午</option>
+                                            <option value="周二下午">周二下午</option>
+                                            <option value="周三上午">周三上午</option>
+                                            <option value="周三下午">周三下午</option>
+                                            <option value="周四上午">周四上午</option>
+                                            <option value="周四下午">周四下午</option>
+                                            <option value="周五上午">周五上午</option>
+                                            <option value="周五下午">周五下午</option>
+                                            <option value="周六上午">周六上午</option>
+                                            <option value="周六下午">周六下午</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button class="btn  btn-primary float-right m-t-n-xs" type="submit" id="btn-add"><strong>添加</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="alter-form" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">修改课程信息</h3>
+
+                                <p>在下面填写修改后的课程</p>
+                                <div class="alert alert-danger alert-dismissable my-alter-info">
+                                    <button aria-hidden="true" class="close" type="button">×</button>
+                                    <div class="alter-text"></div>
+                                </div>
+                                <form role="form" th:action="@{/Teacher/AlterCourse.action}" method="post" id="form-alter">
+                                    <input type="hidden" name="id" id="ipt-id-alter">
+                                    <div class="form-group">
+                                        <label for="ipt-password">课程号</label>
+                                        <input type="text" disabled="" name="id" class="form-control" id="ipt-courseNo-alter">
+                                        <span class="form-text m-b-none" >此处不能进行修改</span>
+                                        <input type="hidden" name="courseNo"  class="form-control" id="ipt-hidden-courseNo-alter" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-account">上课人数</label>
+                                        <input type="text" name="course_Number"  disabled="" class="form-control" id="ipt-maxNumber-alter" >
+                                        <span class="form-text m-b-none" >此处不能进行修改</span>
+                                        <input type="hidden" name="maxNumber"  class="form-control" id="ipt-hidden-maxNumber-alter" >
+
+                                    </div>
+                                    <input type="hidden" name="nowNumber"  class="form-control" id="ipt-hidden-nowNumber-alter" >
+                                    <input type="hidden" name="isCheck"  class="form-control" id="ipt-hidden-isCheck-alter" >
+
+                                    <div class="form-group">
+                                        <label for="ipt-account">课程名</label>
+                                        <input type="text" name="courseName"  class="form-control" id="ipt-courseName-alter" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="select-sex">上课时间</label>
+                                        <select name="beginTime" class="form-control" id="select-beginTime-alter">
+                                            <option value="周一上午">周一上午</option>
+                                            <option value="周一下午">周一下午</option>
+                                            <option value="周二上午">周二上午</option>
+                                            <option value="周二下午">周二下午</option>
+                                            <option value="周三上午">周三上午</option>
+                                            <option value="周三下午">周三下午</option>
+                                            <option value="周四上午">周四上午</option>
+                                            <option value="周四下午">周四下午</option>
+                                            <option value="周五上午">周五上午</option>
+                                            <option value="周五下午">周五下午</option>
+                                            <option value="周六上午">周六上午</option>
+                                            <option value="周六下午">周六下午</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button class="btn  btn-primary float-right m-t-n-xs" type="submit" id="submit-alter"><strong>修改</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-msg" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">添加新课程</h3>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example" >
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>课程名</th>
+                                <th>课程号</th>
+                                <th>上课时间</th>
+                                <th>课程状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="list,index:${course_list}">
+                                <td th:text="${index.index + 1}"></td>
+                                <td th:text="${list.getCourseName()}"></td>
+                                <td th:text="${list.getCourseNo()}"></td>
+                                <td th:text="${list.getBeginTime()}"></td>
+                                <td th:if="${list.getIsCheck()==1}">已通过</td>
+                                <td th:if="${list.getIsCheck()==0}">待审核</td>
+                                <td th:if="${list.getIsCheck()==-1}">已拒绝</td>
+                                <td class="flex-column justify-content-around">
+                                    <a href="#alter-form" data-toggle="modal" th:data_id="${list.getCourseNo()}" class="btn-alter"><button class="btn btn-sm  btn-info" >修改</button></a>
+                                    &ensp;&ensp;
+                                    <a th:href="@{/Teacher/DeleteCourse(courseNo=${list.getCourseNo()})}" ><button class="btn  btn-danger btn-circle btn-"><i class="fa fa-times"></i></button></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

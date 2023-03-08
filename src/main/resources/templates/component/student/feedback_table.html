@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight" th:fragment="feedbacktable">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>课程反馈</h2>
+
+        </div>
+        <div class="col-lg-2">
+
+            <p style="color: #ff0000"
+               th:text="${#httpServletRequest.getAttribute('msg')}"
+               th:if="${not #strings.isEmpty(#httpServletRequest.getAttribute('msg'))}"></p>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title"><small>你可以在这里对你的课程进行课程反馈</small></div>
+                <div class="ibox-content">
+                    <form th:action="@{/Student/Feedback.do}" method="post" id="feedback_post">
+                        <div class="form-group">
+                            <label for="select-courseNo">选择课程</label>
+                            <select name="courseNo" class="form-control" id="select-courseNo" >
+                                <option th:each="item, index:${course_list}" th:value="${item.getCourseNo()}">[[${item.getCourseName()}]]</option>
+                            </select>
+                        </div>
+                        <div class="from-group">
+                            <label for="words"></label>
+                            <textarea name="words" id="words" cols="30" rows="10" required></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button class="btn btn-primary" type="submit">提交反馈</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+</div>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>某机构课程预约系统 | 404 Error</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet">
+
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+
+    <div class="middle-box text-center animated fadeInDown">
+        <h1>404</h1>
+        <h3 class="font-bold">找不到页面或资源</h3>
+
+        <div class="error-desc">
+            对不起，找不到你请求的页面，可能是该页面资源不存在，或者服务器没有公开这个资源，请尝试浏览其他页面，或者点这里回到主页
+            <form class="form-inline m-t justify-content-center" role="form" th:action="@{/Login}">
+                <button type="submit" class="btn btn-primary">回到主页</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script th:src="@{js/jquery-3.1.1.min.js}"></script>
+    <script th:src="@{js/popper.min.js}"></script>
+    <script th:src="@{js/bootstrap.js}"></script>
+
+</body>
+
+</html>

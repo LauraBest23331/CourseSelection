@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.TeacherMapper">
+    <select id="getTeachersAll" resultType="Teacher">
+        select * from teachers_list
+    </select>
+    <select id="queryTeacherByNo" resultType="Teacher">
+        select * from teachers_list where teacherno = #{no}
+    </select>
+    <select id="queryCourseByNo" parameterType="String" resultType="Course">
+        select * from courses_list where courseno = #{courseno} and teacherno = #{teacherno}
+    </select>
+    <select id="queryCoursesAll" resultType="Course">
+        select * from courses_list where teacherno = #{no}
+    </select>
+    <select id="queryCourseSelect" parameterType="String" resultType="java.util.HashMap">
+        SELECT * FROM courses_list t_1
+        inner join courses_select t_2
+        inner join students_list t_3
+        on t_1.courseno = t_2.courseno
+        and t_2.studentno = t_3.studentno
+        where teacherno = #{teacherno};
+    </select>
+
+    <update id="deleteCourseByNo">
+        delete from courses_list where courseno = #{courseNo} and teacherno = #{teacherNo}
+    </update>
+    <update id="deleteTeacherByNo">
+        delete from teachers_list where teacherno = #{no}
+    </update>
+    <update id="addTeacher" parameterType="Teacher">
+        insert into teachers_list values(#{teacherno}, #{username}, #{passwd}, #{sex}, #{age})
+    </update>
+    <select id="queryCourseByNo1" resultType="Course">
+        select * from courses_list where courseno = #{courseno}
+    </select>
+    <select id="getFeedback" resultType="Feedback" parameterType="String">
+        select * from feedback_list  t_1 inner join students_list t_2
+        on t_1.studentno = t_2.studentno
+     inner join courses_list t_3 on t_1.courseno = t_3.courseno
+        where teacherno = #{teacherNo}
+    </select>
+    <select id="getFeedbackAll" resultType="Feedback">
+        select * from feedback_list  t_1 inner join students_list t_2
+        on t_1.studentno = t_2.studentno
+        inner join courses_list t_3 on t_1.courseno = t_3.courseno
+
+    </select>
+</mapper>

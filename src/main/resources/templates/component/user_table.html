@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight" th:fragment="usertable">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>学生列表</h2>
+            <p style="color: #ff0000" class="login-meg"
+               th:text="${error_msg}"></p>
+        </div>
+        <div class="col-lg-2">
+            <a href="#modal-form" data-toggle="modal" class="btn btn-success btn-add">
+                <i class="fa fa-upload"></i>
+                &ensp;&ensp;
+                添加新学生
+            </a>
+            <p style="color: #ff0000"
+               th:text="${#httpServletRequest.getAttribute('msg')}"
+               th:if="${not #strings.isEmpty(#httpServletRequest.getAttribute('msg'))}"></p>
+
+        </div>
+        <div id="modal-form" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">添加新用户</h3>
+
+                                <p>在下面填写新添加的用户数据</p>
+                                <div class="alert alert-danger alert-dismissable my-alter-info">
+                                    <button aria-hidden="true" class="close" type="button">×</button>
+                                    <div class="alter-text"></div>
+                                </div>
+                                <form role="form" th:action="@{/Root/AddStudent.action}" method="post" id="form-add">
+                                    <div class="form-group">
+                                        <label for="ipt-studentNo">账号</label>
+                                        <input type="text" name="studentNo" class="form-control" id="ipt-studentNo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-passwd">密码</label>
+                                        <input type="password" name="passwd" class="form-control" id="ipt-passwd" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-studentName">姓名</label>
+                                        <input type="text" name="studentName" class="form-control" id="ipt-studentName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-age">年龄</label>
+                                        <input type="text" name="age" class="form-control" id="ipt-age" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="select-sex">性别</label>
+                                        <select name="sex" class="form-control" id="select-sex">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button class="btn  btn-primary float-right m-t-n-xs" type="submit" id="btn-add"><strong>添加</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="alter-form" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">修改用户信息</h3>
+
+                                <p>在下面填写修改后的用户数据</p>
+                                <div class="alert alert-danger alert-dismissable my-alter-info">
+                                    <button aria-hidden="true" class="close" type="button">×</button>
+                                    <div class="alter-text"></div>
+                                </div>
+                                <form role="form" th:action="@{/Root/AlterStudent.action}" method="post" id="form-alter">
+                                    <input type="hidden" name="id" id="ipt-id-alter">
+                                    <div class="form-group">
+                                        <label for="ipt-studentNo-alter">账号</label>
+                                        <input type="text" disabled="" name="id" class="form-control" id="ipt-studentNo-alter">
+                                        <span class="form-text m-b-none" >此处不能进行修改</span>
+                                        <input type="hidden" name="studentNo" placeholder="账号" class="form-control" id="ipt-hidden-studentNo-alter" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-studentName-alter">姓名</label>
+                                        <input type="text" name="studentName" placeholder="用户名" class="form-control" id="ipt-studentName-alter" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-passwd-alter">密码</label>
+                                        <input type="text" name="passwd" placeholder="密码" class="form-control" id="ipt-passwd-alter" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipt-age-alter">年龄</label>
+                                        <input type="text" name="age" placeholder="用户名" class="form-control" id="ipt-age-alter" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="select-sex-alter">性别</label>
+                                        <select name="sex" class="form-control" id="select-sex-alter">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button class="btn  btn-primary float-right m-t-n-xs" type="submit" id="submit-alter"><strong>修改</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-msg" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12 b-r"><h3 class="m-t-none m-b">添加新用户</h3>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>数据库中所有学生信息如下</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example" >
+                            <thead>
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>密码</th>
+                                <th>年龄</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="list:${user_list}">
+                                <td th:text="${list.getStudentno()}"></td>
+                                <td th:text="${list.getUsername()}"></td>
+                                <td th:text="${list.getSex()}"></td>
+                                <td th:text="${list.getPasswd()}"></td>
+                                <td th:text="${list.getAge()}"></td>
+
+                                <td class="flex-column justify-content-around">
+                                    <a href="#alter-form" data-toggle="modal" th:data_id="${list.getStudentno()}" class="btn-alter"><button class="btn btn-sm  btn-info" >修改</button></a>
+                                   &ensp;&ensp;
+                                    <a th:href="@{/Root/DeleteStudent(studentNo=${list.getStudentno()})}" ><button class="btn  btn-danger btn-circle btn-"><i class="fa fa-times"></i></button></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

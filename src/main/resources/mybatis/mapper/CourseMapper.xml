@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.CourseMapper">
+    <select id="queryCoursesAll" resultType="Course">
+        select * from courses_list a inner join teachers_list b where a.teacherno = b.teacherno and ischeck = 1
+        order by a.courseno
+    </select>
+    <select id="queryCheckCourses" resultType="Course">
+        select * from courses_list a inner join teachers_list b where a.teacherno = b.teacherno and ischeck = 0
+        order by a.courseno
+    </select>
+    <select id="queryCourse" resultType="Course">
+        select * from courses_list where courseno = #{no}
+    </select>
+    <update id="insertCourse" parameterType="Course">
+        insert into courses_list
+        values(#{courseNo}, #{courseName}, #{teacherNo}, #{beginTime}, #{maxNumber}, #{isCheck}, #{nowNumber})
+    </update>
+
+    <select id="queryCourseSelect" parameterType="String" resultType="java.util.HashMap">
+        SELECT * FROM courses_list t_1
+        inner join courses_select t_2
+        inner join students_list t_3
+        on t_1.courseno = t_2.courseno
+        and t_2.studentno = t_3.studentno
+    </select>
+    <update id="addNumber" parameterType="String">
+        update  courses_list set nownumber = nownumber + 1 where courseno = #{courseNo};
+    </update>
+    <update id="reduceNumber" parameterType="String">
+        update courses_list set nownumber = nownumber - 1 where courseno = #{courseNo};
+    </update>
+    <update id="addCheck" parameterType="String">
+        update courses_list set ischeck = 1 where courseno = #{courseNo};
+    </update>
+    <update id="reduceCheck" parameterType="String">
+        update courses_list set ischeck = -1 where courseno = #{courseNo};
+    </update>
+</mapper>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight"  th:fragment="selecttable">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>我的预约</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form action="/CourseSelection/Student/deleteSelect" method="post">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+
+                                <th>#</th>
+                                <th>课程名 </th>
+                                <th>课程编号 </th>
+                                <th>上课时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item, index:${select_list}">
+                                <td>
+
+                                    <label>
+                                        <input type="checkbox" class="i-checks" name="courseNos[]" th:value="${item.getCourseNo()}">
+                                    </label>
+                                </td>
+                                <td th:text="${item.getCourseName()}"></td>
+                                <td th:text="${item.getCourseNo()}"></td>
+                                <td th:text="${item.getBeginTime()}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <input type="submit" class="btn btn-w-m btn-primary" value="退订">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>

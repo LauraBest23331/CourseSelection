@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.StudentMapper">
+    <select id="queryStudentList" resultType="Student">
+        select * from students_list
+    </select>
+    <select id="queryStudentByNo" resultType="Student">
+        select * from students_list where studentno = #{no}
+    </select>
+    <update id="addCourseSelection" parameterType="String">
+        insert into courses_select values(#{courseno}, #{studentno})
+    </update>
+    <select id="queryCourseByNo" parameterType="String" resultType="int">
+        select count(*) from courses_select where courseno = #{courseno} and studentno = #{studentno}
+    </select>
+    <select id="queryCoursesAll" resultType="Course">
+        select * from courses_select t_a inner join courses_list t_b where t_a.courseno = t_b.courseno and studentno = #{no}
+    </select>
+    <update id="deleteSelectByNo" parameterType="String">
+        delete from courses_select where courseno = #{courseno} and studentno = #{studentno}
+    </update>
+    <update id="updateStudent" parameterType="Student">
+        update students_list set username = #{username},passwd = #{passwd}, sex= #{sex}, age=#{age}
+        where studentno = #{studentno}
+    </update>
+    <update id="deleteStudent">
+        delete from students_list where studentno = #{studentno}
+    </update>
+    <update id="addStudent">
+        insert into students_list values(#{studentno}, #{username}, #{passwd}, #{sex}, #{age})
+    </update>
+    <update id="insertFeedback">
+        insert into feedback_list values( #{courseNo}, #{studentNo}, #{words})
+    </update>
+</mapper>

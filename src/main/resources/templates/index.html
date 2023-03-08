@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>烈马科技后台管理</title>
+
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{font-awesome/css/font-awesome.css}" rel="stylesheet">
+
+    <link th:href="@{css/animate.css}" rel="stylesheet">
+    <link th:href="@{css/style.css}" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <div th:replace="~{component/nav_bar::navbar(active='index.html')}"></div>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="~{component/top_bar::topbar}"></div>
+        <div th:replace="~{component/dashboard::dashboard}"></div>
+        <div th:replace="~{component/footer::footer}"></div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<!-- Mainly scripts -->
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{js/inspinia.js}"></script>
+<script th:src="@{js/plugins/pace/pace.min.js}"></script>
+</body>
+
+
+</html>

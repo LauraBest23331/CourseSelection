@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight"  th:fragment="coursetable">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>课程预约</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+
+                                <th>#</th>
+                                <th>课程名 </th>
+                                <th>课程代码 </th>
+                                <th>教师</th>
+                                <th>教师编号</th>
+                                <th>余量</th>
+                                <th>上课时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item, index:${courses_list}" th:if="${item.getIsCheck()==1}">
+                                <td>
+
+                                    <input type="checkbox" class="i-checks" th:name="${index.index}">
+                                </td>
+                                <td th:text="${item.getCourseName()}"></td>
+                                <td th:text="${item.getCourseNo()}"></td>
+                                <td th:text="${item.getUsername()}"></td>
+                                <td th:text="${item.getTeacherNo()}"></td>
+                                <td th:text="${item.getMaxNumber()-item.getNowNumber()}"></td>
+                                <td th:text="${item.getBeginTime()}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-w-m btn-primary">预约</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>

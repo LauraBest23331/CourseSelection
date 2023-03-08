@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>某机构课程预约系统</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet">
+
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            border-top: 1px solid #e7eaec;
+            line-height: 2.42857;
+            padding: 8px;
+            vertical-align: top;
+            text-align: center;
+        }
+        .btn-add{
+            margin-top: 20px;
+        }
+        .my-alter-info{
+            display: none;
+        }
+        #words{
+            width: 80%;
+            height: 300px;
+            resize: none;
+            border: 1px solid #e5e6e7;
+        }
+        #select-sex{
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <div th:replace="~{component/student_nav_bar::navbar(active='feedback.html')}"></div>
+    <div id="page-wrapper" class="gray-bg">
+        <div th:replace="~{component/student_top_bar::topbar}"></div>
+        <div th:replace="~{component/student/feedback_table::feedbacktable}"></div>
+        <div th:replace="~{component/footer::footer}"></div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<!-- Mainly scripts -->
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+<script th:src="@{/js/my/userconfig.js}"></script>
+<script>
+    // $('#feedback_post').submit(function (){
+    //     if ($('#words').val()==='') {
+    //         alert('请输入内容')
+    //         return false;
+    //     }
+    //     else {
+    //         return true;
+    //     }
+    // })
+</script>
+</body>
+
+</html>

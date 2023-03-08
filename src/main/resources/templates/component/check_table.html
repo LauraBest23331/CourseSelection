@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="wrapper wrapper-content animated fadeInRight"  th:fragment="checktable">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>课程审核</h2>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>申请人</th>
+                                <th>教师编号</th>
+                                <th>课程名</th>
+                                <th>课程代码</th>
+                                <th>上课人数</th>
+                                <th>上课时间</th>
+                                <th>是否通过</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item, index:${course_list}">
+                                <td th:text="${index.index + 1}"></td>
+                                <td th:text="${item.getUsername()}"></td>
+                                <td th:text="${item.getTeacherNo()}"></td>
+                                <td th:text="${item.getCourseName()}"></td>
+                                <td th:text="${item.getCourseNo()}"></td>
+                                <td th:text="${item.getMaxNumber()}"></td>
+                                <td th:text="${item.getBeginTime()}"></td>
+                                <td>
+
+                                <a th:href="@{/Root/CheckAgree(courseNo=${item.getCourseNo()})}" class="btn-alter"><button class="btn btn-rounded btn-success" >通过</button></a>
+                                &ensp;&ensp;
+                                <a th:href="@{/Root/CheckRefuse(courseNo=${item.getCourseNo()})}" ><button class="btn btn-rounded btn-danger">拒绝</button></a>
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>
